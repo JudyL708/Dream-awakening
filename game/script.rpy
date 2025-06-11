@@ -28,6 +28,12 @@ label start:
     # 此处显示各行对话。
 
 #【剧情1】【节点1】
+    menu:
+        "是":
+            jump functions
+        "否":
+            pass
+        "是否测试特殊功能？"
     "早上六点的地铁站人挤人。"
     "售货员""你叫【玩家名字】，对吧？"
     "售货员查过了你的身份证，将票递给你。"
@@ -55,12 +61,23 @@ label ego1:
     "然而刚一出门，背后立刻传来剧烈的声响。"
 label superego1:
     "然而他们都不动弹。你焦急不已，没看到自己头顶上的天花板也已经开裂，大小石块纷纷砸下来。你感觉头顶被人敲了一记，眼前一黑，失去了知觉。"
-
+return#加一个return（返回主界面）以防止可能地出错，我加了一个额外的选项让玩家选择是否开始测试功能
 label functions:
+    while True:
+        $ yourname = renpy.input(_("你的名字是什么？"))
+        $ yourname = yourname.strip()
+        if yourname != "":
+            menu:
+                "是":
+                    jump start1
+                "否":
+                    pass
+                "你的名字是[yourname]，不错吧？"
+        else:
+            "不要这么害羞嘛……"
+label start1:
     e "这是一个{a=jump:fenmu}{plain}{color=#FFFFFF}坟墓{/color}{/plain}{/a}。（试着“挖掘一下坟墓”？）"
     e "你离开了坟墓。"
-    jump start1
-label start1:
     e "现在不能使用反转卡。"
     $ reversecard = False
     e "现在可以了！"

@@ -225,6 +225,9 @@ screen input(prompt):
             text prompt style "input_prompt"
             input id "input"
 
+    use reversecardscreen
+    use depthscreen
+
 style input_prompt is default
 
 style input_prompt:
