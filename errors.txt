@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 45: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
-    "你立刻躲到了三角结构中"
-                 ^
+File "game/script.rpy", line 103: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if reversecard == True:
+    ^
 
 Ren'Py Version: Ren'Py 8.3.7.25031702
-Wed Jun 11 13:16:50 2025
+Fri Jun 13 01:57:02 2025
