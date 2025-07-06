@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 103: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    if reversecard == True:
-    ^
+File "game/script.rpy", line 295: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
+    "为了防止他掉下来，我们跟上他。"
+                     ^
 
 Ren'Py Version: Ren'Py 8.3.7.25031702
-Fri Jun 13 01:57:02 2025
+Sun Jul  6 22:45:16 2025
