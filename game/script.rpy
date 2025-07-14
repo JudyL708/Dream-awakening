@@ -375,70 +375,6 @@ label ch2_plot2_E:
         jump ch3_plot1
         #本我+2，自我+2
 
-return
-
-#结局汇总
-label end1:
-    g "唉，看来是我的不对，对于新人来说，这个问题还是太难解决了……也许下次我不该拉这些新手来这种地方的……"
-    "他叹了一口气，随即他朝你摆了摆手，你便从座位上飞了出去，周围的一切都在飞速的离你而去——"
-    "你睁开眼睛，看到了熟悉的天花板。墙上的钟表显示此时还不到早晨六点，一切照常。"
-    "只是，不知何时，你发现你的言行举止与你的父母越来越接近，甚至包括那些你发誓一定要改掉的部分……"
-    "【在某个咖啡馆，男孩摇了摇头。】"
-    g "亏我还浪费了【反转】在你身上……既然你也如同他们一样伤人，那就让你感受一下他的绝望吧。"
-
-label end2:
-    #半途死亡
-
-#特殊功能
-label functions:
-    while True:
-        $ yourname = renpy.input(_("你的名字是什么？"))
-        $ yourname = yourname.strip()
-        if yourname != "":
-            menu:
-                "是":
-                    jump start1
-                "否":
-                    pass
-                "你的名字是[yourname]，不错吧？"
-        else:
-            "不要这么害羞嘛……"
-label start1:
-    e "这是一个{a=jump:fenmu}{plain}{color=#FFFFFF}坟墓{/color}{/plain}{/a}。（试着“挖掘一下坟墓”？）"
-    e "你离开了坟墓。"
-    e "现在不能使用反转卡。"
-    $ reversecard = False
-    e "现在可以了！"
-    if reversecard == True:
-        e "你使用了反转卡。"
-    else:
-        $ reversecard = True
-        e "你没有使用反转卡。"
-    e "是否要测试预知能力？"
-    menu:
-        "是":
-            $ foresee = True
-        "否":
-            pass
-    e "现在看看能不能预知！"
-    menu:
-        "选这个":
-            e "24"
-            $ The_Id += 1
-        "选那个":
-            e "42"
-            $ The_superEgo = 1
-        "查看预知结果"if foresee:
-            e "选这个：本我+1"
-            e "选那个：超我+1"
-    return
-
-label fenmu:
-    e "你开始挖坟。"
-    # 此处为游戏结尾。
-    jump start1
-
-
 #惩罚段
 label punishment:
     "不知是冰冷刺骨的海水，还是越发强烈的窒息感将你唤醒。模糊的视线中，你似乎看到引导者正在向你喊着什么。但是，由于在水中的缘故，你只能听见气泡中混杂的严重失真的声音。"
@@ -520,5 +456,73 @@ label punishment_c1:
     "紧接着，下一道暗流涌动而来，你狼狈的堪堪躲过，慌不择路的在水中逃窜。露蒂莘一把拽过来黑土飞鹰，跟上了你。"
     b"别傻站着！跟着探梦者跑！"
     jump pass #这里似乎也需要跳到f段
+
+return
+
+#结局汇总
+label end1:
+    g "唉，看来是我的不对，对于新人来说，这个问题还是太难解决了……也许下次我不该拉这些新手来这种地方的……"
+    "他叹了一口气，随即他朝你摆了摆手，你便从座位上飞了出去，周围的一切都在飞速的离你而去——"
+    "你睁开眼睛，看到了熟悉的天花板。墙上的钟表显示此时还不到早晨六点，一切照常。"
+    "只是，不知何时，你发现你的言行举止与你的父母越来越接近，甚至包括那些你发誓一定要改掉的部分……"
+    "【在某个咖啡馆，男孩摇了摇头。】"
+    g "亏我还浪费了【反转】在你身上……既然你也如同他们一样伤人，那就让你感受一下他的绝望吧。"
+
+label end2:
+    #半途死亡
+
+#特殊功能
+label functions:
+    while True:
+        $ yourname = renpy.input(_("你的名字是什么？"))
+        $ yourname = yourname.strip()
+        if yourname != "":
+            menu:
+                "是":
+                    jump start1
+                "否":
+                    pass
+                "你的名字是[yourname]，不错吧？"
+        else:
+            "不要这么害羞嘛……"
+label start1:
+    e "这是一个{a=jump:fenmu}{plain}{color=#FFFFFF}坟墓{/color}{/plain}{/a}。（试着“挖掘一下坟墓”？）"
+    e "你离开了坟墓。"
+    e "现在不能使用反转卡。"
+    $ reversecard = False
+    e "现在可以了！"
+    if reversecard == True:
+        e "你使用了反转卡。"
+    else:
+        $ reversecard = True
+        e "你没有使用反转卡。"
+    e "是否要测试预知能力？"
+    menu:
+        "是":
+            $ foresee = True
+        "否":
+            pass
+    e "现在看看能不能预知！"
+    menu:
+        "选这个":
+            e "24"
+            $ The_Id += 1
+        "选那个":
+            e "42"
+            $ The_superEgo = 1
+        "查看预知结果"if foresee:
+            e "选这个：本我+1"
+            e "选那个：超我+1"
+    return
+
+
+
+label fenmu:
+    e "你开始挖坟。"
+    # 此处为游戏结尾。
+    jump start1
+
+
+
 
 
