@@ -112,44 +112,50 @@ screen say(who, what):
     ## 没有空间。
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
-    use reversecardscreen
-    use depthscreen
+    if depth > 0 and intro1 == True:
+        use reversecardscreen
+    if depth > 0 and intro2 == True:
+        use depthscreen
 
 screen reversecardscreen():
     zorder 50
     modal True
-    if reversecard == False:    
+    if reversecard == False and depth > 0 and intro1 == True:    
         imagebutton:
             xalign 0.99
             yalign 0.5
             idle "images/normal1.jpg"
             hover "images/normal1.jpg"
             action SetVariable("reversecard",True)
-    else:
+    elif reversecard == True and depth > 0 and intro1 == True:
         imagebutton:
             xalign 0.99
             yalign 0.5
             idle "images/normal.jpg"
             hover "images/normal.jpg"
             action NullAction()
+    else:
+        pass
 
 screen depthscreen():
     zorder 50
     modal True
-    if depth_show == False:    
+    if depth_show == False and depth > 0 and intro2 == True:    
         imagebutton:
             xalign 0.99
             yalign 0.8
             idle "images/normal1.jpg"
             hover "images/normal1.jpg"
             action [SetVariable("depth_show",True),Show("depthcheck")]
-    else:
+    elif depth_show == True and depth > 0 and intro2 == True:
         imagebutton:
             xalign 0.99
             yalign 0.8
             idle "images/normal.jpg"
             hover "images/normal.jpg"
             action [SetVariable("depth_show",False),Hide("depthcheck")]
+    else:
+        pass
 
 screen depthcheck():
     zorder 75

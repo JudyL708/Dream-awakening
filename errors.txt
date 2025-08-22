@@ -2,26 +2,17 @@
 errors listed below, and try again.
 
 
-<<<<<<< Updated upstream
-File "game/script.rpy", line 45: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
-    "你立刻躲到了三角结构中"
-                 ^
-
-Ren'Py Version: Ren'Py 8.3.7.25031702
-Wed Jun 11 13:16:50 2025
-=======
-File "game/script.rpy", line 38: expected statement.
+File "game/script.rpy", line 45: expected statement.
     <<<<<<< Updated upstream
                             ^
 
-File "game/script.rpy", line 63: expected statement.
+File "game/script.rpy", line 64: expected statement.
     =======
           ^
 
-File "game/script.rpy", line 75: expected statement.
+File "game/script.rpy", line 510: expected statement.
     >>>>>>> Stashed changes
                            ^
 
-Ren'Py Version: Ren'Py 8.3.7.25031702
-Sun Jul 20 15:33:54 2025
->>>>>>> Stashed changes
+Ren'Py Version: Ren'Py 8.4.1.25072401
+Wed Aug 13 10:49:20 2025
