@@ -2,34 +2,9 @@
 errors listed below, and try again.
 
 
-<<<<<<< Updated upstream
-File "game/script.rpy", line 45: expected statement.
-    <<<<<<< Updated upstream
-                            ^
-
-File "game/script.rpy", line 64: expected statement.
-    =======
-          ^
-
-File "game/script.rpy", line 510: expected statement.
-    >>>>>>> Stashed changes
-                           ^
+File "game/script.rpy", line 145: invalid syntax. Perhaps you forgot a comma?
+    renpy.notify("「"+plname"的个人信息已更新！」")
+                     ^^^^^^^^^^^^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Wed Aug 13 10:49:20 2025
-=======
-File "game/script.rpy", line 38: expected statement.
-    <<<<<<< Updated upstream
-                            ^
-
-File "game/script.rpy", line 63: expected statement.
-    =======
-          ^
-
-File "game/script.rpy", line 75: expected statement.
-    >>>>>>> Stashed changes
-                           ^
-
-Ren'Py Version: Ren'Py 8.3.7.25031702
-Sun Jul 20 15:33:54 2025
->>>>>>> Stashed changes
+Mon Sep 22 14:52:42 2025

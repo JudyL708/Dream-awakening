@@ -299,14 +299,14 @@ define gui.scrollbar_tile = False
 define gui.slider_tile = False
 
 ## 水平边框。
-define gui.bar_borders = Borders(6, 6, 6, 6)
-define gui.scrollbar_borders = Borders(6, 6, 6, 6)
-define gui.slider_borders = Borders(6, 6, 6, 6)
+define gui.bar_borders = Borders(10, 10, 10, 10)
+define gui.scrollbar_borders = Borders(10, 10, 10, 10)
+define gui.slider_borders = Borders(10, 10, 10, 10)
 
 ## 垂直边框。
-define gui.vbar_borders = Borders(6, 6, 6, 6)
-define gui.vscrollbar_borders = Borders(6, 6, 6, 6)
-define gui.vslider_borders = Borders(6, 6, 6, 6)
+define gui.vbar_borders = Borders(10, 10, 10, 10)
+define gui.vscrollbar_borders = Borders(10, 10, 10, 10)
+define gui.vslider_borders = Borders(10, 10, 10, 10)
 
 ## 如何处理 GUI 中不可滚动的滚动条。 hide 为隐藏， None 为显示。
 define gui.unscrollable = "hide"
@@ -316,23 +316,20 @@ define gui.unscrollable = "hide"
 ##
 ## 历史记录屏幕显示玩家已经阅读过的对话。
 
-## Ren'Py 将保留的对话历史块数。
-define config.history_length = 250
+## Ren'Py 将保留的对话历史块数。过多的对话历史块将很可能导致游戏的卡顿。
+define config.history_length = 99
 
 ## 历史屏幕条目的高度，或设置为 None 以使高度变量自适应。
 define gui.history_height = 210
 
-## 在历史记录屏幕条目之间添加额外的空间。
-define gui.history_spacing = 0
-
 ## 所指定叙述角色的标签的坐标、宽度和对齐方式。
-define gui.history_name_xpos = 233
+define gui.history_name_xpos = -100
 define gui.history_name_ypos = 0
-define gui.history_name_width = 233
-define gui.history_name_xalign = 1.0
+define gui.history_name_width = 200
+define gui.history_name_xalign = 0
 
 ## 对话文本的坐标、宽度和对齐方式。
-define gui.history_text_xpos = 255
+define gui.history_text_xpos = 100
 define gui.history_text_ypos = 3
 define gui.history_text_width = 1110
 define gui.history_text_xalign = 0.0

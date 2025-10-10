@@ -67,23 +67,31 @@ define config.has_voice = True
 
 ## 进入或退出游戏菜单。
 
-define config.enter_transition = None
-define config.exit_transition = None
+define fadefast = Fade(0.25,0,0.25)
+
+define logoadv = MultipleTransition([
+    False, Dissolve(0.15),
+    "logo.png", Dissolve(0.15),
+    True])
+
+define config.enter_transition = logoadv#翻开书
+
+define config.exit_transition = logoadv#关上书
 
 
 ## 各个游戏菜单之间的转场。
 
-define config.intra_transition = None
+define config.intra_transition = logoadv#翻书页
 
 
 ## 载入游戏后使用的转场。
 
-define config.after_load_transition = None
+define config.after_load_transition = Dissolve(0.5)
 
 
 ## 在游戏结束之后进入主菜单时使用的转场。
 
-define config.end_game_transition = None
+define config.end_game_transition = Dissolve(0.5)
 
 
 ## 用于控制在游戏开始标签不存在时转场的变量。作为替代，在显示初始化场景后使用

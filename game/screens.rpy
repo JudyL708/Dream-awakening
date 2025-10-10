@@ -160,7 +160,7 @@ screen depthscreen():
 screen depthcheck():
     zorder 75
     modal True
-    add "blood"
+    add "white"
     text _("当前深度值："+str(depth)) xalign 0.5 yalign 0.5 size 60
     use depthscreen
 
@@ -302,9 +302,13 @@ screen quick_menu():
 
             xalign 0.5
             yalign 1.0
-            textbutton _("保存") action ShowMenu('beforesave')
+            textbutton _("回滚") action Rollback()
+            textbutton _("历史对话") action ShowMenu('history')
+            textbutton _("快进") action Skip()
+            textbutton _("保存") action ShowMenu('save')
+            textbutton _("自动") action Preference("auto-forward", "toggle")
             textbutton _("角色信息") action ShowMenu("charactersetting")
-            textbutton _("设置") action Show('preferences', dissolve)
+            textbutton _("设置") action ShowMenu('preferences')
             textbutton _("静音") action Preference("all mute", "toggle")
 
 screen darkness():#用于转场间的界面，因为Renpy自身支持的屏幕间转场数量实在过于有限！默认转场效果必须为None，不然二者会依次执行！因此这个界面在游戏里用不到！
@@ -360,14 +364,14 @@ screen navigation():
             idle "gui/main_start.png"
             hover "gui/main_start_2.png"
         imagebutton:
-            action [ShowMenu("load"),With(dissolve)]
+            action ShowMenu("load")
             #activate_sound "audio/sound_start.mp3"
             xalign 0.85
             yalign 0.734
             idle "gui/main_load.png"
             hover "gui/main_load_2.png"
         imagebutton:
-            action [ShowMenu("preferences"),With(dissolve)]
+            action ShowMenu("preferences")
             #activate_sound "audio/sound_start.mp3"
             xalign 0.5375
             yalign 0.867
@@ -666,7 +670,7 @@ screen about():
 
     tag menu
 
-    add "images/blood.png"
+    add "images/darkness.png"
 
     ## 此 use 语句将 game_menu 屏幕包含到了这个屏幕内。子级 vbox 将包含在
     ## game_menu 屏幕的 viewport 内。
@@ -676,7 +680,7 @@ screen about():
         xalign 0.98 yalign 0.96
         style "return_button"
 
-        action [Return(),With(dissolve)]
+        action Return()
 
     style_prefix "about"
 
@@ -722,7 +726,7 @@ screen save():
         xalign 0.98 yalign 0.96
         style "return_button"
 
-        action ShowMenu("aftersave")
+        action Return()
 
 screen aftersave():
     add "darkness.png"
@@ -739,7 +743,7 @@ screen load():
         xalign 0.98 yalign 0.96
         style "return_button"
 
-        action ShowMenu("afterload")
+        action Return()
 
 screen afterload():
     add "darkness.png"
@@ -882,16 +886,15 @@ style slot_button_text:
 screen preferences():
     modal True
 
-    add "blood.png"
+    add "white.png"
 
     textbutton _("返回"):
 
         xalign 0.98 yalign 0.96
         if main_menu:
-            action [Return(),With(dissolve)]
+            action Return()
         else:
-            action Hide("preferences",dissolve)
-
+            action Return()
     tag menu
 
     use game_menu1(_("")):
@@ -900,9 +903,9 @@ screen preferences():
                 xpos 0
                 ypos 0
                 style_prefix "radio"
-                label _("{size=+10}{color=#090909}水晶球的大小{/color}")
-                textbutton _("{size=+10}min{/size}") action Preference("display", "window")
-                textbutton _("{size=+10}max{/size}") action Preference("display", "fullscreen")
+                label _("{size=+10}{color=#090909}屏幕大小{/color}")
+                textbutton _("{size=+10}窗口{/size}") action Preference("display", "window")
+                textbutton _("{size=+10}全屏{/size}") action Preference("display", "fullscreen")
         elif renpy.variant("web"):
             add "images/testlogo1.png":
                 xpos 0
@@ -1043,12 +1046,22 @@ style slider_vbox:
 
 screen history():
 
+    add "images/white.png"
+
     tag menu
 
-    ## 避免预缓存此屏幕，因为它可能非常大。
+    textbutton _("返回"):
+
+        xalign 0.98 yalign 0.96
+        if main_menu:
+            action Return()
+        else:
+            action Return()
+
+    ## 避免预缓存此界面，因为它可能非常大。
     predict False
 
-    use game_menu(_("历史"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0, spacing=gui.history_spacing):
+    use game_menu1(_(""), scroll=("viewport"), yinitial=1.0):
 
         style_prefix "history"
 
@@ -1076,10 +1089,10 @@ screen history():
                     substitute False
 
         if not _history_list:
-            label _("尚无对话历史记录。")
+            textbutton _("[historymystery]") action SetVariable("histerymistery","{color=#990000}{b}你别无选择。{/b}{/color}")
 
 
-## 此代码决定了允许在历史记录屏幕上显示哪些标签。
+## 此代码决定了允许在历史记录界面上显示哪些标签。
 
 define gui.history_allow_tags = { "alt", "noalt", "rt", "rb", "art" }
 
@@ -1094,8 +1107,9 @@ style history_label is gui_label
 style history_label_text is gui_label_text
 
 style history_window:
-    xfill True
+    xmaximum 800
     ysize gui.history_height
+    xpos 100
 
 style history_name:
     xpos gui.history_name_xpos
@@ -1105,7 +1119,7 @@ style history_name:
 
 style history_name_text:
     min_width gui.history_name_width
-    textalign gui.history_name_xalign
+    text_align gui.history_name_xalign
 
 style history_text:
     xpos gui.history_text_xpos
@@ -1113,7 +1127,7 @@ style history_text:
     xanchor gui.history_text_xalign
     xsize gui.history_text_width
     min_width gui.history_text_width
-    textalign gui.history_text_xalign
+    text_align gui.history_text_xalign
     layout ("subtitle" if gui.history_text_xalign else "tex")
 
 style history_label:
@@ -1759,27 +1773,91 @@ style slider_slider:
     xsize 900
 
 screen charactersetting():
-    add "blood.png"
-    text ("当前本我值"+str(The_Id)):
-        xalign 0.8
-        yalign 0.2
-    text ("当前自我值"+str(The_Ego)):
-        xalign 0.8
-        yalign 0.3
-    text ("当前超我值"+str(The_superEgo)):
-        xalign 0.8
-        yalign 0.4
+    add "darkness.png"
+    if meetpl1:
+        text ([plname]):
+            xalign 0.2
+            yalign 0.2
+    else:
+        text ("？？？"):
+            xalign 0.2
+            yalign 0.2
+    viewport:
+        xmaximum 400
+        ymaximum 200
+        mousewheel False
+        draggable False
+        pagekeys True
+        side_yfill True
+        vscrollbar_xpos 0
+        vscrollbar_ypos 0
+        child_size (400,200)
+        xpos 1400
+        ypos 200
+        scrollbars None
+        vbox:
+            if firsttest:
+                text ("当前本我值："+str(The_Id))
+                text ("当前自我值："+str(The_Ego))
+                text ("当前超我值："+str(The_superEgo))
+            else:
+                text ("当前本我值：？？？")
+                text ("当前自我值：？？？")
+                text ("当前超我值：？？？")
+    viewport:
+        xmaximum 400
+        ymaximum 200
+        mousewheel True
+        draggable True
+        pagekeys True
+        side_yfill True
+        vscrollbar_xpos 0
+        vscrollbar_ypos 0
+        child_size (400,200)
+        xpos 1400
+        ypos 800
+        scrollbars "vertical" 
+        vbox:       
+            if chapter == 1:    
+                text ("当前章节：第一章")
+            
     textbutton("下一页"):
         xalign 1.0
         yalign 0.5
-        action [Hide("charactersetting"), ShowMenu("charactersetting1")]
+        action [Hide("charactersetting"), ShowMenu("charactersetting0")]
     textbutton("返回"):
         xalign 0.5
         yalign 0.5
         action Return()
 
-screen charactersetting1():
-    add "blood.png"
+screen charactersetting0():
+    add "darkness.png"
+    if meetydz1:
+        text ("引导者"): 
+            xalign 0.2
+            yalign 0.2
+    else:
+        text ("该人物暂未解锁"):
+            xalign 0.2
+            yalign 0.2
+    viewport:
+        xmaximum 400
+        ymaximum 200
+        mousewheel True
+        draggable True
+        pagekeys True
+        side_yfill True
+        vscrollbar_xpos 0
+        vscrollbar_ypos 0
+        child_size (400,200)
+        xpos 1400
+        ypos 200
+        scrollbars "vertical" 
+        vbox:       
+            if meetydz1:    
+                text ("角色简介：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            else:
+                text ("角色简介：？？？")
     viewport:
         xmaximum 400
         ymaximum 200
@@ -1792,9 +1870,12 @@ screen charactersetting1():
         side_yfill True
         child_size (400,200)
         xpos 1400
-        ypos 200
-        vbox:        
-            text ("角色功能：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+        ypos 800
+        vbox:
+            if meetydz1:    
+                text ("角色功能：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            else:
+                text ("角色功能：？？？")
     viewport:
         xmaximum 400
         ymaximum 200
@@ -1809,12 +1890,93 @@ screen charactersetting1():
         ypos 500
         scrollbars "vertical" 
         vbox:       
-            text ("角色剧情：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            if meetydz1:    
+                text ("角色剧情：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            else:
+                text ("角色剧情：？？？")
 
     textbutton("上一页"):
         xalign 0
         yalign 0.5
-        action [Hide("charactersetting1"), ShowMenu("charactersetting")]
+        action [Hide("charactersetting0"), ShowMenu("charactersetting")]
+    textbutton("下一页"):
+        xalign 1.0
+        yalign 0.5
+        action [Hide("charactersetting0"), ShowMenu("charactersetting1")]
+    textbutton("返回"):
+        xalign 0.5
+        yalign 0.5
+        action Return()
+
+screen charactersetting1():
+    add "darkness.png"
+    if meethtfy1:
+        text ("黑土飞鹰"): 
+            xalign 0.2
+            yalign 0.2
+    else:
+        text ("该人物暂未解锁"):
+            xalign 0.2
+            yalign 0.2
+    viewport:
+        xmaximum 400
+        ymaximum 200
+        vscrollbar_xpos 0
+        vscrollbar_ypos 0
+        scrollbars "vertical"
+        mousewheel True
+        draggable True
+        pagekeys True
+        side_yfill True
+        child_size (400,200)
+        xpos 1400
+        ypos 200
+        vbox:
+            if meethtfy1:    
+                text ("角色简介：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            else:
+                text ("角色简介：？？？")
+    viewport:
+        xmaximum 400
+        ymaximum 200
+        mousewheel True
+        draggable True
+        pagekeys True
+        side_yfill True
+        vscrollbar_xpos 0
+        vscrollbar_ypos 0
+        child_size (400,200)
+        xpos 1400
+        ypos 500
+        scrollbars "vertical" 
+        vbox:       
+            if meethtfy1:    
+                text ("角色剧情：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            else:
+                text ("角色剧情：？？？")
+    viewport:
+        xmaximum 400
+        ymaximum 200
+        vscrollbar_xpos 0
+        vscrollbar_ypos 0
+        scrollbars "vertical"
+        mousewheel True
+        draggable True
+        pagekeys True
+        side_yfill True
+        child_size (400,200)
+        xpos 1400
+        ypos 800
+        vbox:
+            if meethtfy1:    
+                text ("角色功能：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            else:
+                text ("角色功能：？？？")
+
+    textbutton("上一页"):
+        xalign 0
+        yalign 0.5
+        action [Hide("charactersetting1"), ShowMenu("charactersetting0")]
     textbutton("下一页"):
         xalign 1.0
         yalign 0.5
@@ -1825,7 +1987,15 @@ screen charactersetting1():
         action Return()
 
 screen charactersetting2():
-    add "blood.png"
+    add "darkness.png"
+    if meetldx1:
+        text ("露蒂辛"): 
+            xalign 0.2
+            yalign 0.2
+    else:
+        text ("该人物暂未解锁"):
+            xalign 0.2
+            yalign 0.2
     viewport:
         xmaximum 400
         ymaximum 200
@@ -1840,7 +2010,10 @@ screen charactersetting2():
         xpos 1400
         ypos 200
         vbox:        
-            text ("角色功能：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            if meetldx1:    
+                text ("角色简介：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            else:
+                text ("角色简介：？？？")
     viewport:
         xmaximum 400
         ymaximum 200
@@ -1855,7 +2028,28 @@ screen charactersetting2():
         xpos 1400
         ypos 500
         vbox:        
-            text ("角色剧情：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            if meetldx1:    
+                text ("角色剧情：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            else:
+                text ("角色剧情：？？？")
+    viewport:
+        xmaximum 400
+        ymaximum 200
+        vscrollbar_xpos 0
+        vscrollbar_ypos 0 
+        mousewheel True
+        draggable True
+        pagekeys True
+        side_yfill True
+        scrollbars "vertical"
+        child_size (400,200)
+        xpos 1400
+        ypos 800
+        vbox:        
+            if meetldx1:    
+                text ("角色功能：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+            else:
+                text ("角色功能：？？？")
     textbutton("上一页"):
         xalign 0
         yalign 0.5
