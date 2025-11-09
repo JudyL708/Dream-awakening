@@ -1783,7 +1783,7 @@ screen charactersetting():
             xalign 0.2
             yalign 0.2
     viewport:
-        xmaximum 400
+        xmaximum 380
         ymaximum 200
         mousewheel False
         draggable False
@@ -1804,8 +1804,41 @@ screen charactersetting():
                 text ("当前本我值：？？？")
                 text ("当前自我值：？？？")
                 text ("当前超我值：？？？")
+
     viewport:
-        xmaximum 400
+        xmaximum 380
+        ymaximum 200
+        mousewheel True
+        draggable True
+        pagekeys True
+        side_yfill True
+        vscrollbar_xpos 0
+        vscrollbar_ypos 0
+        child_size (400,200)
+        xpos 1400
+        ypos 500
+        scrollbars None
+        vbox:       
+            if firsttest:
+                if The_Id and The_Ego and The_Id >= 10:
+                    if The_Id >= The_Ego and The_Id >= The_superEgo:
+                        text ("梦境赋予了你强健的体魄")
+                    elif The_Ego >= The_Id and The_Ego >= The_superEgo:
+                        text ("梦境赋予了你清醒的头脑")
+                    elif The_superEgo >= The_Id and The_superEgo >= The_Ego:
+                        text ("梦境赋予了你敏锐的直觉")
+                else:
+                    if The_Id >= The_Ego and The_Id >= The_superEgo:
+                        text ("你服从于欲望")
+                    elif The_Ego >= The_Id and The_Ego >= The_superEgo:
+                        text ("你听从于思考")
+                    elif The_superEgo >= The_Id and The_superEgo >= The_Ego:
+                        text ("你倾向于奉献")
+            else:
+                text ("……")
+
+    viewport:
+        xmaximum 380
         ymaximum 200
         mousewheel True
         draggable True
@@ -1816,7 +1849,7 @@ screen charactersetting():
         child_size (400,200)
         xpos 1400
         ypos 800
-        scrollbars "vertical" 
+        scrollbars None
         vbox:       
             if chapter == 1:    
                 text ("当前章节：第一章")
@@ -1841,7 +1874,7 @@ screen charactersetting0():
             xalign 0.2
             yalign 0.2
     viewport:
-        xmaximum 400
+        xmaximum 380
         ymaximum 200
         mousewheel True
         draggable True
@@ -1855,11 +1888,15 @@ screen charactersetting0():
         scrollbars "vertical" 
         vbox:       
             if meetydz1:    
-                text ("角色简介：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+                text ("角色简介：突兀出现的白发少年\n指引你拯救梦境主人的向导\n是个理性的人，但似乎隐藏着很深的秘密，让你无法完全相信\n")
             else:
                 text ("角色简介：？？？")
+            if meetydz2:    
+                text ("？？？")
+            else:
+                pass
     viewport:
-        xmaximum 400
+        xmaximum 380
         ymaximum 200
         vscrollbar_xpos 0
         vscrollbar_ypos 0
@@ -1877,7 +1914,7 @@ screen charactersetting0():
             else:
                 text ("角色功能：？？？")
     viewport:
-        xmaximum 400
+        xmaximum 380
         ymaximum 200
         mousewheel True
         draggable True
@@ -1919,7 +1956,7 @@ screen charactersetting1():
             xalign 0.2
             yalign 0.2
     viewport:
-        xmaximum 400
+        xmaximum 380
         ymaximum 200
         vscrollbar_xpos 0
         vscrollbar_ypos 0
@@ -1933,11 +1970,15 @@ screen charactersetting1():
         ypos 200
         vbox:
             if meethtfy1:    
-                text ("角色简介：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+                text ("角色简介：\n来自某个村庄，十三四岁，自称是“伟大航海家”的少女\n总是想当英雄\n顽皮跳脱，生命力旺盛\n")
             else:
                 text ("角色简介：？？？")
+            if meethtfy2:    
+                text ("？？？")
+            else:
+                pass
     viewport:
-        xmaximum 400
+        xmaximum 380
         ymaximum 200
         mousewheel True
         draggable True
@@ -1955,7 +1996,7 @@ screen charactersetting1():
             else:
                 text ("角色剧情：？？？")
     viewport:
-        xmaximum 400
+        xmaximum 380
         ymaximum 200
         vscrollbar_xpos 0
         vscrollbar_ypos 0
@@ -1989,7 +2030,7 @@ screen charactersetting1():
 screen charactersetting2():
     add "darkness.png"
     if meetldx1:
-        text ("露蒂辛"): 
+        text ("露蒂莘"): 
             xalign 0.2
             yalign 0.2
     else:
@@ -1997,7 +2038,7 @@ screen charactersetting2():
             xalign 0.2
             yalign 0.2
     viewport:
-        xmaximum 400
+        xmaximum 380
         ymaximum 200
         vscrollbar_xpos 0
         vscrollbar_ypos 0 
@@ -2011,11 +2052,15 @@ screen charactersetting2():
         ypos 200
         vbox:        
             if meetldx1:    
-                text ("角色简介：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1")
+                text ("角色简介：\n神庙中端庄的少女，拥有预知能力\n有强烈道德感，却不会干涉你的选择\n宿命论的信仰者（但你的到来或许会带来动摇）\n")
             else:
                 text ("角色简介：？？？")
+            if meetldx2:    
+                text ("？？？")
+            else:
+                pass
     viewport:
-        xmaximum 400
+        xmaximum 380
         ymaximum 200
         vscrollbar_xpos 0
         vscrollbar_ypos 0
@@ -2033,7 +2078,7 @@ screen charactersetting2():
             else:
                 text ("角色剧情：？？？")
     viewport:
-        xmaximum 400
+        xmaximum 380
         ymaximum 200
         vscrollbar_xpos 0
         vscrollbar_ypos 0 

@@ -30,6 +30,10 @@ init python:
     meetydz1 = False
     meethtfy1 = False
     meetldx1 = False
+    meetpl2 = False
+    meetydz2 = False
+    meethtfy2 = False
+    meetldx2 = False
     firsttest = False
     chapter = 1
 
