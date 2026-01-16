@@ -2,34 +2,11 @@
 errors listed below, and try again.
 
 
-<<<<<<< Updated upstream
-File "game/script.rpy", line 45: expected statement.
-    <<<<<<< Updated upstream
-                            ^
+The label ch4_plot4 is defined twice, at File "game/script.rpy", line 563:
+label ch4_plot4:
+and File "game/script.rpy", line 910:
+label ch4_plot4:
 
-File "game/script.rpy", line 64: expected statement.
-    =======
-          ^
 
-File "game/script.rpy", line 510: expected statement.
-    >>>>>>> Stashed changes
-                           ^
-
-Ren'Py Version: Ren'Py 8.4.1.25072401
-Wed Aug 13 10:49:20 2025
-=======
-File "game/script.rpy", line 38: expected statement.
-    <<<<<<< Updated upstream
-                            ^
-
-File "game/script.rpy", line 63: expected statement.
-    =======
-          ^
-
-File "game/script.rpy", line 75: expected statement.
-    >>>>>>> Stashed changes
-                           ^
-
-Ren'Py Version: Ren'Py 8.3.7.25031702
-Sun Jul 20 15:33:54 2025
->>>>>>> Stashed changes
+Ren'Py Version: Ren'Py 8.5.0.25111603
+Fri Jan 16 20:49:51 2026
