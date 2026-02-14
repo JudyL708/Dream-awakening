@@ -499,11 +499,19 @@ label ch3_plot1:
     a "呜哇啊啊啊啊！我的胳膊！我的腿！呼……吓死我了，还好都还在……探梦者！我要退出！宝藏什么的我不要了！我可不想有命发财没命花！"
     menu:
         "真的要退出吗？但刚刚你可是帮了大忙啊，我们都很需要你哦！":
+<<<<<<< Updated upstream
             jump ch3_quit
+=======
+            jump quit1
+>>>>>>> Stashed changes
         "那就继续出发吧！":
             jump ch3_keep_going
 
+<<<<<<< Updated upstream
 label ch3_quit:
+=======
+label quit1:
+>>>>>>> Stashed changes
     b "真正的英雄可是不会临阵脱逃的，难道说航海家小姐不是真正的英雄？"
     a "额……我……我……"
     g "而且，我们其实已经得到了一部分宝藏，不如先看看，再决定要不要退出。"

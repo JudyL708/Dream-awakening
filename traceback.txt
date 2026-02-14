@@ -1,6 +1,7 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
+<<<<<<< Updated upstream
   File "game/screens.rpy", line 1047, in execute
     screen history():
   File "game/screens.rpy", line 1047, in execute
@@ -8,10 +9,29 @@ While running game code:
   File "game/screens.rpy", line 1054, in execute
     use game_menu1(_("历史"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0, spacing=gui.history_spacing):
 TypeError: got an unexpected keyword argument 'spacing'
+=======
+  File "game/script.rpy", line 769, in script
+    $ The_Superego += 1
+  File "game/script.rpy", line 769, in <module>
+    $ The_Superego += 1
+      ^^^^^^^^^^^^     
+NameError: name 'The_Superego' is not defined. Did you mean: 'The_superEgo'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "game/script.rpy", line 769, in script
+    $ The_Superego += 1
+  File "game/script.rpy", line 769, in <module>
+    $ The_Superego += 1
+      ^^^^^^^^^^^^     
+NameError: name 'The_Superego' is not defined. Did you mean: 'The_superEgo'?
+>>>>>>> Stashed changes
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
+<<<<<<< Updated upstream
   File "renpy/common/00gamemenu.rpy", line 174, in script
     $ ui.interact()
   File "renpy/ast.py", line 1187, in execute
@@ -69,8 +89,42 @@ Traceback (most recent call last):
   File "renpy/parameter.py", line 398, in apply
     raise TypeError("got an unexpected keyword argument {arg!r}".format(arg=next(iter(kwargs))))
 TypeError: got an unexpected keyword argument 'spacing'
+=======
+  File "game/script.rpy", line 769, in script
+    $ The_Superego += 1
+  File "renpy/ast.py", line 1187, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1273, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/script.rpy", line 769, in <module>
+    $ The_Superego += 1
+      ^^^^^^^^^^^^     
+NameError: name 'The_Superego' is not defined. Did you mean: 'The_superEgo'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "game/script.rpy", line 769, in script
+    $ The_Superego += 1
+  File "renpy/ast.py", line 1187, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1273, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/script.rpy", line 769, in <module>
+    $ The_Superego += 1
+      ^^^^^^^^^^^^     
+NameError: name 'The_Superego' is not defined. Did you mean: 'The_superEgo'?
+>>>>>>> Stashed changes
 
 macOS-15.6-arm64-arm-64bit arm64
 Ren'Py 8.4.1.25072401
 Adventurer 1.0
+<<<<<<< Updated upstream
 Mon Sep 22 17:23:52 2025
+=======
+Fri Feb 13 15:01:47 2026
+>>>>>>> Stashed changes
